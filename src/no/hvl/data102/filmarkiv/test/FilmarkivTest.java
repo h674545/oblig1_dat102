@@ -7,6 +7,7 @@ import no.hvl.data102.filmarkiv.impl.Filmarkiv;
 import no.hvl.data102.filmarkiv.impl.Sjanger;
 import no.hvl.data102.filmarkiv.impl.Film;
 
+
 class FilmarkivTest {
 	
 	private Filmarkiv filmarkiv;

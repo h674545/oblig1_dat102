@@ -8,34 +8,33 @@ import no.hvl.data102.filmarkiv.impl.Sjanger;
 
 public class Tekstgrensesnitt {
 	
-	public Film lesFilm(int nr, String tittel, int år, String sjanger, String produsent) { 
-		
-		Scanner scanner = new Scanner(System.in);
-		
-		System.out.println("Filmnummer");
-		nr = Integer.parseInt(scanner.nextLine());
-		scanner.nextLine();
-		
-		System.out.println("Tittel");
-		tittel = scanner.nextLine();
-		scanner.nextLine();
-		
-		System.out.println("År");
-		år = Integer.parseInt(scanner.nextLine());
-		scanner.nextLine();
-		
-		System.out.println("sjanger (action, drama, komedie");
-		sjanger = scanner.nextLine();
-		scanner.nextLine();
-		
-		System.out.println("Produsent");
-		produsent = scanner.nextLine();
-		scanner.nextLine();
-		scanner.close();
-		
-		
-		return new Film(nr, tittel, år, null, sjanger, produsent);		
-	}
+	public Film lesFilm(Scanner scanner) {  
+        System.out.print("Filmnummer: ");
+        int nr = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("Tittel: ");
+        String tittel = scanner.nextLine();
+
+        System.out.print("År: ");
+        int år = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("Sjanger (ACTION, DRAMA, KOMEDIE, BARN): ");
+        String sjangerStr = scanner.nextLine().toUpperCase();
+        Sjanger sjanger;
+
+        try {
+            sjanger = Sjanger.valueOf(sjangerStr);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ugyldig sjanger. Standardverdi (DRAMA) brukes.");
+            sjanger = Sjanger.DRAMA;
+        }
+
+        System.out.print("Produsent: ");
+        String produsent = scanner.nextLine();
+
+        return new Film(nr, tittel, år, sjanger, "", produsent);
+    }
+	
 	
 	public void skrivUtFilm(Film film) {
 		

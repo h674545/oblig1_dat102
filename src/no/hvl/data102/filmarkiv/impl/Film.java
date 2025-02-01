@@ -96,6 +96,8 @@ public class Film {
 		this.tittel = tittel;
 	}
 	
-
-
+	@Override
+    public String toString() {
+        return "Film: " + tittel + " (" + årLansering + ")";
+	}
 }

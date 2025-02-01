@@ -42,50 +42,59 @@ public class Meny {
 	            String valg = scanner.nextLine();
 
 	            switch (valg) {
-	                case "1":
-	                    tekstgr.skrivUtFilmDelstrengTittel(this.filmarkiv, "filmnummer");
-	                    break;
+	            case "1":  
+	                System.out.print("Skriv inn filmnummer: ");
+	                int filmnummerSok = Integer.parseInt(scanner.nextLine());
+	                Film funnetFilm = filmarkiv.finnFilm(filmnummerSok);
+	                if (funnetFilm != null) {
+	                    tekstgr.skrivUtFilm(funnetFilm);
+	                } else {
+	                    System.out.println("Ingen film funnet med dette nummeret.");
+	                }
+	                break;
 
-	                case "2":
-	                    Film nyFilm = tekstgr.lesFilm(0, valg, 0, valg, valg); // Les film fra bruker
-	                    filmarkiv.leggTilFilm(nyFilm);
-	                    break;
+	            case "2":  
+	                System.out.println("Legg til en ny film:");
+	                Film nyFilm = tekstgr.lesFilm(scanner);  
+	                filmarkiv.leggTilFilm(nyFilm);
+	                System.out.println("Filmen er lagt til.");
+	                break;
 
-	                case "3":
-	                    System.out.print("Skriv inn filmnummer for filmen som skal slettes: ");
-	                    int filmnummer = Integer.parseInt(scanner.nextLine());
-	                    boolean slettet = filmarkiv.slettFilm(filmnummer);
-	                    if (slettet) {
-	                        System.out.println("Filmen ble slettet.");
-	                    } else {
-	                        System.out.println("Ingen film med dette nummeret ble funnet.");
-	                    }
-	                    break;
+	            case "3": 
+	                System.out.print("Skriv inn filmnummer for filmen som skal slettes: ");
+	                int filmnummer = Integer.parseInt(scanner.nextLine());
+	                boolean slettet = filmarkiv.slettFilm(filmnummer);
+	                if (slettet) {
+	                    System.out.println("Filmen ble slettet.");
+	                } else {
+	                    System.out.println("Ingen film med dette nummeret ble funnet.");
+	                }
+	                break;
 
-	                case "4":
-	                    System.out.print("Skriv inn del av tittel: ");
-	                    String delTittel = scanner.nextLine();
-	                    tekstgr.skrivUtFilmDelstrengTittel(filmarkiv, delTittel);
-	                    break;
+	            case "4":  
+	                System.out.print("Skriv inn del av tittel: ");
+	                String delTittel = scanner.nextLine();
+	                tekstgr.skrivUtFilmDelstrengTittel(filmarkiv, delTittel);
+	                break;
 
-	                case "5":
-	                    System.out.print("Skriv inn produsentens navn: ");
-	                    String produsent = scanner.nextLine();
-	                    tekstgr.skrivUtFilmProdusent(filmarkiv, produsent);
-	                    break;
+	            case "5": 
+	                System.out.print("Skriv inn produsentens navn: ");
+	                String produsent = scanner.nextLine();
+	                tekstgr.skrivUtFilmProdusent(filmarkiv, produsent);
+	                break;
 
-	                case "6":
-	                    tekstgr.skrivUtStatistikk(filmarkiv);
-	                    break;
+	            case "6": 
+	                tekstgr.skrivUtStatistikk(filmarkiv);
+	                break;
 
-	                case "0":
-	                    System.out.println("Avslutter programmet...");
-	                    scanner.close();
-	                    return;
+	            case "0": 
+	                System.out.println("Avslutter programmet...");
+	                scanner.close();
+	                return;
 
-	                default:
-	                    System.out.println("Ugyldig valg, prøv igjen.");
-	                    break;
+	            default:
+	                System.out.println("Ugyldig valg, prøv igjen.");
+	                break;
 	            
 		}
 	   }
